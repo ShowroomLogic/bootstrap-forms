@@ -1,0 +1,9 @@
+{% if field.errors %}
+<div class="controls">
+  <div class="text-danger">
+    {% for error in field.errors %}
+      <small{% if field.errors %} class="error"{% endif %}>{{ error|escape }}</small>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

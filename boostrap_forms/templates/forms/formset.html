@@ -1,0 +1,12 @@
+{{ formset.management_form }}
+{% for form in formset %}
+    <div class="well">
+        {% if form.Meta.title %}
+            <h3>{{form.Meta.title}}</h3>
+        {% endif %}
+        <div class="form-horizontal">
+            {% include "forms/form.html" %}
+        </div>
+    </div>
+{% endfor %}
+</table>

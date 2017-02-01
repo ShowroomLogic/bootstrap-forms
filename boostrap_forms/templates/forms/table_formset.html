@@ -1,0 +1,24 @@
+{{ formset.management_form }}
+<table class="table">
+    <thead>
+        <tr>
+            {% for field in formset.0.visible_fields %}
+                <th>{{field.label}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for form in formset %}
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+            <tr>
+                {% for field in form.visible_fields %}
+                    <td>
+                        {% include "forms/form_control.html" with field=field %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+{% load widget_tweaks %}
+<div class="form-group {% if field.errors %} has-error{% endif %}">
+  {% include 'forms/form_field_errors.html' %}
+  {% if field|widget_type == 'checkboxinput' %}
+    <div class="controls">
+      <div class="checkbox">
+        <label>
+          {{ field }} {{ field.label }}
+          <p class="help-block">
+            {{ field.field.help_text }}
+          </p>
+        </label>
+      </div>
+    </div>
+  {% else %}
+    {% if field.label %}
+      <label class="control-label {% if field.field.required %}required{% endif %}">{{ field.label }}</label>
+    {% endif %}
+    <div class="controls {{ field|widget_type }}">
+      {% if field|widget_type == 'modelselectwidget' or field|widget_type == 'modelselectmultiwidget' or field|widget_type == 'makeselectmultiwidget' %}
+      {{ field }}
+      {% else %}
+      {{ field|add_class:"form-control" }}
+      {% endif %}
+      {% if field.field.help_text %}
+        <p class="help-block">
+          {{ field.field.help_text }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
